@@ -33,3 +33,64 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+// function createMenu(array) {
+//   //declare variables
+//   let menuDiv = document.createElement('div');
+//   let list = document.createElement('ul');
+//   let newArray = [];
+//   array.forEach(function() {
+//     newArray.push(document.createElement('li'));
+//     console.log('newArray: ', newArray);    
+//   });
+// // setup structure
+//   menuDiv.appendChild(list);
+//   newArray.forEach(function(item) {
+//     list.appendChild(item);
+//   })
+// // add classes
+//   menuDiv.classList.add('menu');
+//   // set text content
+//   newArray.forEach(function(item, index) {
+//     item.textContent = newArray[index];
+//   })
+// // setup menu button
+//   const menuButton = document.querySelector('.menu-button');
+//   menuButton.addEventListener('click', function() {
+//     menuDiv.classList.toggle('menu--open');
+//   });
+
+//   return menuDiv;
+// }
+
+// createMenu(menuItems);
+
+function makeMenu(menuItemArr) {
+  // Declare Variables
+  const menu = document.createElement('div');
+  const menuUl = document.createElement('ul');
+  const menuLiArr = [];
+  menuItemArr.forEach(function(){
+    menuLiArr.push(document.createElement('li'))
+  })
+  // Setup Structure
+  menu.appendChild(menuUl);
+  menuLiArr.forEach(function(item){
+    menuUl.appendChild(item);
+  });
+  // Add Classes
+  menu.classList.add('menu');
+  // Set Text Content
+  menuLiArr.forEach(function(item,index){
+    item.textContent = menuItemArr[index];
+  })
+  // Setup Menu Button
+  const menuButton = document.querySelector('.menu-button');
+  menuButton.addEventListener('click', function(){
+    menu.classList.toggle('menu--open')
+  })
+  // Return Component
+  return menu;
+}
+
+makeMenu(menuItems);

@@ -112,3 +112,68 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+console.log('it works');
+
+
+function createArticle(articleObj) {
+  const article = document.createElement('div');
+  const dateP = document.createElement('p');
+  const oneP = document.createElement('p');
+  const twoP = document.createElement('p');
+  const threeP = document.createElement('p');
+  const spanBoi = document.createElement('span');
+  const titleH = document.createElement('h2');
+  article.appendChild(titleH);
+  article.appendChild(dateP);
+  article.appendChild(oneP);
+  article.appendChild(twoP);
+  article.appendChild(threeP);
+  article.appendChild(spanBoi);
+  
+  article.classList.add('article');
+  dateP.classList.add('date');
+  spanBoi.classList.add('expandButton');
+
+  titleH.textContent = articleObj.title;
+  dateP.textContent = articleObj.date;
+  oneP.textContent = articleObj.firstParagraph;
+  twoP.textContent = articleObj.secondParagraph;
+  threeP.textContent = articleObj.thirdParagraph;
+
+  spanBoi.addEventListener('click', function() {
+    article.classList.toggle('article-open');
+  })
+
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+ 
+
+let newData = data.map((item) => {
+  let newArticle = createArticle(item);
+  return newArticle;
+});
+
+newData.forEach(component => {
+  articles.appendChild(component);
+});
+
+let newArticle = createArticle( {
+  title: 'Wow I hope this works',
+  date: 'Jan 1st, 2019',
+  firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+        hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+        Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+  secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+        hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+        hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+        hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+  thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+        Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+        Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+});
+
+articles.appendChild(newArticle);
